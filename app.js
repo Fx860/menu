@@ -11,7 +11,7 @@ const menu = [
   {
     id: 2,
     title: "Dubbel middag",
-    category: "lunch",
+    category: "Lunch",
     price: 13.99,
     img: "./images/item-2.jpeg",
     desc: `vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `,
@@ -35,7 +35,7 @@ const menu = [
   {
     id: 5,
     title: "Ägg Attack",
-    category: "lunch",
+    category: "Lunch",
     price: 22.99,
     img: "./images/item-5.jpeg",
     desc: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `,
@@ -59,7 +59,7 @@ const menu = [
   {
     id: 8,
     title: "Amerikansk Klassiker",
-    category: "lunch",
+    category: "Lunch",
     price: 12.99,
     img: "./images/item-8.jpeg",
     desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
@@ -76,8 +76,27 @@ const menu = [
 
 const sectionCenter = document.querySelector(".section-center");
 
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+//load items
 window.addEventListener("DOMContentLoaded", function () {
   displayMenuItems(menu);
+});
+// filter items
+filterBtns.forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter(function (menuItem) {
+      if (menuItem.category === category) {
+        return menuItem;
+      }
+    });
+    if (category === "alla") {
+      displayMenuItems(menu);
+    } else {
+      displayMenuItems(menuCategory);
+    }
+  });
 });
 
 function displayMenuItems(menuItems) {
